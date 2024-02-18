@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Registro de Personas</h2>
+    <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" required [(ngModel)]="persona.nombre" name="nombre">
+      </div>
+  
+      <div class="form-group">
+        <label for="apellido">Apellido:</label>
+        <input type="text" class="form-control" id="apellido" required [(ngModel)]="persona.apellido" name="apellido">
+      </div>
+  
+      <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" class="form-control" id="edad" required [(ngModel)]="persona.edad" name="edad">
+      </div>
+      
+      <div class="form-group">
+        <label for="correo">Correo:</label>
+        <input type="email" class="form-control" id="correo" required [(ngModel)]="persona.correo" name="correo">
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Telefono:</label>
+        <input type="tel" class="form-control" id="telefono" required [(ngModel)]="persona.telefono" name="telefono">
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!personaForm.form.valid">Registrar</button>
+    </form>
+
+  <h3>Lista de Personas Registradas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of personas">
+        <td>{{persona.nombre}}</td>
+        <td>{{persona.apellido}}</td>
+        <td>{{persona.edad}}</td>
+        <td>{{persona.correo}}</td>
+        <td>{{persona.telefono}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="eliminarPersona(persona.id)">Eliminar</button>
+          <button [routerLink]="['/actualizar-persona', persona.id]" class="btn btn-warning">Actualizar</button>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+  </div>
